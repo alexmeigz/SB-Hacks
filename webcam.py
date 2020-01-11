@@ -11,19 +11,21 @@ import cv2
 # - brew tap homebrew/science
 # - brew install opencv
 
-def takePic(i):
-    while(True):
-        cap = cv2.VideoCapture(0)
-        ret,frame = cap.read()
-        rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
+def takePic():
 
-        cv2.imshow('frame', rgb)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+    for i in range(1, 7):
+        while (True):
+            cap = cv2.VideoCapture(0)
+            ret,frame = cap.read()
+            rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
+
+            cv2.imshow('Side ' + str(i), rgb)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
                 cv2.imwrite('capture'+str(i)+'.jpg', frame)
                 break
 
-    cap.release()
-    cv2.destroyAllWindows()
+        cap.release()
+        cv2.destroyAllWindows()
 
-for i in range(1,7):
-    takePic(i)
+
+
