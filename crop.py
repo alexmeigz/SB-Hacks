@@ -36,6 +36,6 @@ for imgName in webcamImgs:
   for i in range(3):
     for j in range(3):
       colorTileImage[i].append(cubeSide.crop(((i * w/3), (j * h/3), ((i + 1) * w/3), ((j + 1) * h/3))))
-      colorTileImage[i][j].save("colorTile-" + str(i) + "-" +str(j) + ".jpg")
+      # colorTileImage[i][j].save("colorTile-" + str(i) + "-" +str(j) + ".jpg")
 
 
