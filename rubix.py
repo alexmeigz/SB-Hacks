@@ -110,7 +110,8 @@ class Rubix3:
         ]
 
 
-    def isCorrectOrientation(cubie):
+
+    def isCorrectOrientation(self, cubie):
         correctOrientation = True
         if cubie.frontFace is not None:
             correctOrientation = cubie.frontFace == self.frontFace
@@ -126,7 +127,7 @@ class Rubix3:
             correctOrientation = cubie.bottomFace == self.bottomFace
         return correctOrientation
 
-    def rotateF(clockwise):
+    def rotateF(self, clockwise):
         '''
         Takes boolean - true is clockwise rotation, false is counterclockwise
         '''
@@ -155,7 +156,7 @@ class Rubix3:
             self.bcfFace = self.clfFace.rotateCounterClockwise()
             self.clfFace = temp.rotateCounterClockwise()
 
-    def rotateB(clockwise):
+    def rotateB(self, clockwise):
         if clockwise: #cube notation for B, L, and D are opposite of F, R, U faces
             temp = self.tlbFace
             self.tlbFace = self.trbFace.rotateCounterClockwise()
@@ -181,7 +182,7 @@ class Rubix3:
             self.bcbFace = self.crbFace.rotateClockwise()
             self.crbFace = temp.rotateClockwise()
 
-    def rotateR(clockwise):
+    def rotateR(self, clockwise):
         if clockwise:
             temp = self.trfFace
             self.trfFace = self.brfFace.rotateUp()
@@ -207,7 +208,7 @@ class Rubix3:
             self.brcFace = self.crfFace.rotateDown()
             self.crfFace = temp.rotateDown()
 
-    def rotateL(clockwise):
+    def rotateL(self, clockwise):
          if not clockwise:
             temp = self.tlfFace
             self.tlfFace = self.blfFace.rotateUp()
@@ -234,7 +235,7 @@ class Rubix3:
             self.clfFace = temp.rotateDown()
 
 
-    def rotateU(clockwise):
+    def rotateU(self, clockwise):
         if clockwise:
             temp = self.tlfFace
             self.tlfFace = self.trfFace.rotateLeft()
@@ -260,7 +261,7 @@ class Rubix3:
             self.tcbFace = self.tlcFace.rotateRight()
             self.tlcFace = temp.rotateRight()
 
-    def rotateD(clockwise):
+    def rotateD(self, clockwise):
         if not clockwise:
             temp = self.blfFace
             self.blfFace = self.brfFace.rotateLeft()

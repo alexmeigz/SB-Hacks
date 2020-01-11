@@ -12,21 +12,39 @@ class Move:
 
 
 
+
 def solveCube(cube):
   moves = []
-  for cubie in cube.pieces:
-    if cube.isCorrectOrientation(cubie) or cubie.type == "CENTER":
-      continue
-    elif (cubie.type == "CORNER"):
-      moves.append(solveCorner(cubie))
-    elif (cubie.type == "EDGE"):
-      moves.append(solveEdge(cubie))
+  while (checkSolve(cube)):
+    for cubie in cube.pieces:
+      if cube.isCorrectOrientation(cubie) or cubie.type == "CENTER":
+        continue
+
+      # TODO: Implement the solving algorithm
+      elif (cubie.type == "CORNER"):
+        moves.append(solveCorner(cubie))
+      elif (cubie.type == "EDGE"):
+        moves.append(solveEdge(cubie))
+
+
+
+      # Simplify the moves
+      if moves[-1].name == moves[-2].name:
+        moves[-2].direction += moves[-1].direction
+        moves.pop()
+
   return moves
 
+def checkSolved(cube):
+  for cubie in cube.pieces:
+    if not cube.isCorrectOrientation(cubie):
+      return False
+  return True
+
 def solveCorner(cubie):
-  # just return the moves using old pochman
+  
   pass
 
 def solveEdge(cubie):
-  # just return the moves using old pochman
+  
   pass
