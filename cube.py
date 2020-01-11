@@ -29,6 +29,7 @@ class Cube:
 
 
 
+
     def rotateUp(self):
         '''rotates cube upward'''
         temp = self.bottomFace
