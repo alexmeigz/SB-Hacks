@@ -27,7 +27,12 @@ class Cube:
         elif counter == 2:
             self.type = "EDGE"
 
+        # defined orientation [top, right, front]
+        self.o = [0,0,0]
+        self.solvedO = [0,0,0]
+        
 
+        
 
 
     def rotateUp(self):

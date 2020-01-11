@@ -39,12 +39,12 @@ class Rubix3:
     def __init__(self, tlf, tcf, trf, clf, ccf, crf, blf, bcf, brf,
                        tlc, tcc, trc, clc, ccc, crc, blc, bcc, brc,
                        tlb, tcb, trb, clb, ccb, crb, blb, bcb, brb, ):
-        self.frontColor = "WHITE"
-        self.backColor = "YELLOW"
-        self.rightColor = "GREEN"
-        self.leftColor = "BLUE"
-        self.bottomColor = "ORANGE"
-        self.topColor = "RED"
+        self.frontColor = ccf
+        self.backColor = ccb
+        self.rightColor = crc
+        self.leftColor = clc
+        self.bottomColor = bcc
+        self.topColor = tcc
 
         self.tlfFace = tlf
         self.tcfFace = tcf
