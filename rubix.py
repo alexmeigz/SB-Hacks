@@ -76,6 +76,40 @@ class Rubix3:
         self.bcbFace = bcb
         self.brbFace = brb
 
+        self.pieces = [
+            self.tlfFace,
+            self.tcfFace,
+            self.trfFace,
+            self.clfFace,
+            self.ccfFace ,
+            self.crfFace ,
+            self.blfFace ,
+            self.bcfFace ,
+            self.brfFace ,
+
+            self.tlcFace ,
+            self.tccFace,
+            self.trcFace,
+            self.clcFace,
+            self.cccFace,
+            self.crcFace ,
+            self.blcFace ,
+            self.bccFace,
+            self.brcFace,
+
+            self.tlbFace ,
+            self.tcbFace ,
+            self.trbFace,
+            self.clbFace ,
+            self.ccbFace ,
+            self.crbFace ,
+            self.blbFace ,
+            self.bcbFace,
+            self.brbFace
+
+        ]
+
+
     def isCorrectOrientation(cubie):
         correctOrientation = True
         if cubie.frontFace != None:
@@ -174,7 +208,7 @@ class Rubix3:
             self.crfFace = temp.rotateDown()
 
     def rotateL(clockwise):
-         if !clockwise:
+         if not clockwise:
             temp = self.tlfFace
             self.tlfFace = self.blfFace.rotateUp()
             self.blfFace = self.blbFace.rotataUp()
@@ -227,7 +261,7 @@ class Rubix3:
             self.tlcFace = temp.rotateRight()
 
     def rotateD(clockwise):
-        if !clockwise:
+        if not clockwise:
             temp = self.blfFace
             self.blfFace = self.brfFace.rotateLeft()
             self.brfFace = self.brbFace.rotateLeft()
