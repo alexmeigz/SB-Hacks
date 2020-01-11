@@ -27,24 +27,6 @@ class Cube:
         elif counter == 2:
             self.type = "EDGE"
 
-        # [top, right, front]
-        self.o = [0, 0, 0]
-        # determine what orientation the cubie is
-        for i in [front, left, back, right, top, bottom]:
-            if i is None:
-                continue
-            if i == "RED":
-                self.o[0] = 1
-            if i == "ORANGE":
-                self.o[0] = -1
-            if i == "GREEN":
-                self.o[1] = 1
-            if i == "BLUE":
-                self.o[1] = -1
-            if i == "WHITE":
-                self.o[2] = 1
-            if i == "YELLOW":
-                self.o[2] = -1
 
 
 
