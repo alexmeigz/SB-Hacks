@@ -24,6 +24,3 @@ def detect_properties(path):
         print('\tr: {}'.format(color.color.red))
         print('\tg: {}'.format(color.color.green))
         print('\tb: {}'.format(color.color.blue))
-        print('\ta: {}'.format(color.color.alpha))
-        
-        
