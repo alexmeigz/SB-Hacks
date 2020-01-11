@@ -48,6 +48,20 @@ class Cube:
         self.leftFace = self.backFace
         self.frontFace = temp
 
+    def rotateClockwise(self):
+        temp = self.topFace
+        self.topFace = self.leftFace
+        self.leftFace = self.bottomFace
+        self.bottomFace = self.rightFace
+        self.rightFace = temp
+
+    def rotateCounterClockwise(self):
+        temp = self.topFace
+        self.topFace = self.rightFace
+        self.rightFace = self.bottomFace
+        self.bottomFace = self.leftFace
+        self.leftFace = temp
+
     def __str__(self):
         return ("Front Face: " + str(self.frontFace) +
                 "\nLeft Face: " + str(self.leftFace) +
