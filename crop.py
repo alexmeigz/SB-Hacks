@@ -32,34 +32,22 @@ def cropToSize(images):
     print (cubeSide.size[0], cubeSide.size[1])
     cubeSide.save(imgName) # saves portion of the cube face only
 
-def cutToTiles(images, dimension):
+def cutToTiles(images, n):
+  '''Takes list of images, cuts each to n times n pieces, 
+      and return cubeface objects according to color of center piece'''
+  cubeFaces = {}
   for imgName in images:
     tiles = [[],[],[]]
     image = Image.open(imgName)
     w, h = image.size
 
-    for i in range(dimension):
-      for j in range(dimension):
+    for i in range(n):
+      for j in range(n):
         tiles[i].append(image.crop(((i * w/3), (j * h/3), ((i + 1) * w/3), ((j + 1) * h/3))))
 
-        #ToDo: pass into face object for storage
-        
+        #ToDo: pass into face object for storage and add it to dictionary cubeFace
+
         #tiles[i][j].save(imgName[:-4] + "-" + str(i) + "," + str(j) + ".jpg")
+  return cubeFaces
   
 
-'''
-  # Shows the image in image viewer 
-  #imageCube.show()
-
-  # Cuts the pictures into 9 different color tiles
-  colorTileImage = [[], [], []]
-
-  w, h = cubeSide.size
-
-  for i in range(3):
-    for j in range(3):
-      colorTileImage[i].append(cubeSide.crop(((i * w/3), (j * h/3), ((i + 1) * w/3), ((j + 1) * h/3))))
-      # colorTileImage[i][j].save("colorTile-" + str(i) + "-" +str(j) + ".jpg")
-  
-  # Converts the color images to 
-'''
