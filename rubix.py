@@ -39,6 +39,13 @@ class Rubix3:
     def __init__(self, tlf, tcf, trf, clf, ccf, crf, blf, bcf, brf,
                        tlc, tcc, trc, clc, ccc, crc, blc, bcc, brc,
                        tlb, tcb, trb, clb, ccb, crb, blb, bcb, brb, ):
+        self.frontColor = "WHITE"
+        self.backColor = "YELLOW"
+        self.rightColor = "GREEN"
+        self.leftColor = "BLUE"
+        self.bottomColor = "ORANGE"
+        self.topColor = "RED"
+
         self.tlfFace = tlf
         self.tcfFace = tcf
         self.trfFace = trf
@@ -68,6 +75,22 @@ class Rubix3:
         self.blbFace = blb
         self.bcbFace = bcb
         self.brbFace = brb
+
+    def isCorrectOrientation(cubie):
+        correctOrientation = True
+        if cubie.frontFace != None:
+            correctOrientation = cubie.frontFace == self.frontFace
+        if cubie.backFace != None:
+            correctOrientation = cubie.backFace == self.backFace
+        if cubie.rightFace != None:
+            correctOrientation = cubie.rightFace == self.rightFace
+        if cubie.leftFace != None:
+            correctOrientation = cubie.leftFace == self.leftFace
+        if cubie.topFace != None:
+            correctOrientation = cubie.topFace == self.topFace
+        if cubie.bottomFace != None:
+            correctOrientation = cubie.bottomFace == self.bottomFace
+        return correctOrientation
 
     def rotateF(clockwise):
         '''
