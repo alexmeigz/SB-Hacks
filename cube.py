@@ -16,6 +16,19 @@ class Cube:
         self.topFace = top
         self.bottomFace = bottom
 
+        # determine what type of cubie it is
+        self.type = "CENTER"
+        counter = 0
+        for i in [front, left, back, right, top, bottom]:
+            if i is not None:
+                counter += 1
+        if counter == 3:
+            self.type = "CORNER"
+        elif counter == 2:
+            self.type = "EDGE"
+
+
+
     def rotateUp(self):
         '''rotates cube upward'''
         temp = self.bottomFace

@@ -112,17 +112,17 @@ class Rubix3:
 
     def isCorrectOrientation(cubie):
         correctOrientation = True
-        if cubie.frontFace != None:
+        if cubie.frontFace is not None:
             correctOrientation = cubie.frontFace == self.frontFace
-        if cubie.backFace != None:
+        if cubie.backFace is not None:
             correctOrientation = cubie.backFace == self.backFace
-        if cubie.rightFace != None:
+        if cubie.rightFace is not None:
             correctOrientation = cubie.rightFace == self.rightFace
-        if cubie.leftFace != None:
+        if cubie.leftFace is not None:
             correctOrientation = cubie.leftFace == self.leftFace
-        if cubie.topFace != None:
+        if cubie.topFace is not None:
             correctOrientation = cubie.topFace == self.topFace
-        if cubie.bottomFace != None:
+        if cubie.bottomFace is not None:
             correctOrientation = cubie.bottomFace == self.bottomFace
         return correctOrientation
 

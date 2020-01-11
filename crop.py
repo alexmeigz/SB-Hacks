@@ -35,7 +35,6 @@ def cropToSize(images):
 def cutToTiles(images, n):
   '''Takes list of images, cuts each to n times n pieces, 
       and return cubeface objects according to color of center piece'''
-  cubeFaces = {}
   for imgName in images:
     tiles = [[],[],[]]
     image = Image.open(imgName)
@@ -45,9 +44,8 @@ def cutToTiles(images, n):
       for j in range(n):
         tiles[i].append(image.crop(((i * w/3), (j * h/3), ((i + 1) * w/3), ((j + 1) * h/3))))
 
-        #ToDo: pass into face object for storage and add it to dictionary cubeFace
+        #ToDo: look at the colors and store color info in rubix cube objects
 
         #tiles[i][j].save(imgName[:-4] + "-" + str(i) + "," + str(j) + ".jpg")
-  return cubeFaces
   
 
