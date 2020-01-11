@@ -1,6 +1,8 @@
 
 
 
+
+
 def detect_properties(path):
     """Detects image properties in the file."""
     from google.cloud import vision
