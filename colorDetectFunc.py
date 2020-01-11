@@ -1,7 +1,8 @@
-
-
-
-
+'''
+import os 
+GOOGLE_APPLICATION_CREDENTIALS = "/Users/alex/Desktop/app_credentials.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GOOGLE_APPLICATION_CREDENTIALS
+'''
 
 def detect_properties(path):
     """Detects image properties in the file."""
