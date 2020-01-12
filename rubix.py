@@ -4,38 +4,7 @@
 #X is Left (L), Center (C), or Right (R)
 #Z is Front (F), Center (C), or Back (B)
 
-class miniRubix:
-    def __init__(self, tlf, blf, trf, brf, tlb, blb, trb, brb):
-        self.tlfFace = tlf
-        self.blfFace = blf
-        self.trfFace = trf
-        self.brfFace = brf
-        self.tlbFace = tlb
-        self.blbFace = blb
-        self.trbFace = trb
-        self.brbFace = brb
-
-    def rotateUp(col):
-        '''rotate 1 col up'''
-        if col == "left":
-            temp = self.tlbFace
-            self.tlbFace = self.tlfFace.rotateUp()
-            self.tlfFace = self.blfFace.rotateUp()
-            self.blfFace = self.blbFace.rotateUp()
-            self.blbFace = temp.rotateUp()
-        elif col == "right":
-            temp = self.trbFace
-            self.trbFace = self.trfFace.rotateUp()
-            self.trfFace = self.brfFace.rotateUp()
-            self.brfFace = self.brbFace.rotateUp()
-            self.brbFace = temp.rotateUp()
-        else:
-            print("Invalid Column")
-
-    def rotateDown(col):
-        pass
-
-class Rubix3:
+class Rubix:
     def __init__(self, tlf, tcf, trf, clf, ccf, crf, blf, bcf, brf,
                        tlc, tcc, trc, clc, ccc, crc, blc, bcc, brc,
                        tlb, tcb, trb, clb, ccb, crb, blb, bcb, brb, ):
@@ -82,8 +51,8 @@ class Rubix3:
         self.allPieces = []
 
         for i in range(len(self.pieces)):
-            for j in range(len(i)):
-                for k in range(len(j)):
+            for j in range(3):
+                for k in range(3):
                     self.allPieces.append(self.pieces[i][j][k])
 
     def getPiece(t, r, f):
@@ -124,17 +93,17 @@ class Rubix3:
     def isCorrectOrientation(self, cubie):
         correctOrientation = True
         if cubie.frontFace is not None:
-            correctOrientation = cubie.frontFace == self.frontFace
+            correctOrientation = cubie.frontFace == self.frontColor
         if cubie.backFace is not None:
-            correctOrientation = cubie.backFace == self.backFace
+            correctOrientation = cubie.backFace == self.backColor
         if cubie.rightFace is not None:
-            correctOrientation = cubie.rightFace == self.rightFace
+            correctOrientation = cubie.rightFace == self.rightColor
         if cubie.leftFace is not None:
-            correctOrientation = cubie.leftFace == self.leftFace
+            correctOrientation = cubie.leftFace == self.leftColor
         if cubie.topFace is not None:
-            correctOrientation = cubie.topFace == self.topFace
+            correctOrientation = cubie.topFace == self.topColor
         if cubie.bottomFace is not None:
-            correctOrientation = cubie.bottomFace == self.bottomFace
+            correctOrientation = cubie.bottomFace == self.bottomColor
         return correctOrientation
 
     def rotateF(self, clockwise):
@@ -143,170 +112,283 @@ class Rubix3:
         '''
         if clockwise:
             temp = self.tlfFace
-            self.tlfFace = self.blfFace.rotateClockwise()
-            self.blfFace = self.brfFace.rotateClockwise()
-            self.brfFace = self.trfFace.rotateClockwise()
-            self.trfFace = temp.rotateClockwise()
+            self.tlfFace = self.blfFace
+            self.blfFace = self.brfFace
+            self.brfFace = self.trfFace
+            self.trfFace = temp
+
+            self.tlfFace.rotateClockwise()
+            self.blfFace.rotateClockwise()
+            self.brfFace.rotateClockwise()
+            self.trfFace.rotateClockwise()
 
             temp = self.tcfFace
-            self.tcfFace = self.clfFace.rotateClockwise()
-            self.clfFace = self.bcfFace.rotateClockwise()
-            self.bcfFace = self.crfFace.rotateClockwise()
-            self.crfFace = temp.rotateClockwise()
+            self.tcfFace = self.clfFace
+            self.clfFace = self.bcfFace
+            self.bcfFace = self.crfFace
+            self.crfFace = temp
+
+            self.tcfFace.rotateClockwise()
+            self.clfFace.rotateClockwise()
+            self.bcfFace.rotateClockwise()
+            self.crfFace.rotateClockwise()
+
         else:
             temp = self.tlfFace
-            self.tlfFace = self.trfFace.rotateCounterClockwise()
-            self.trfFace = self.brfFace.rotateCounterClockwise()
-            self.brfFace = self.blfFace.rotateCounterClockwise()
-            self.blfFace = temp.rotateCounterClockwise()
+            self.tlfFace = self.trfFace
+            self.trfFace = self.brfFace
+            self.brfFace = self.blfFace
+            self.blfFace = temp
+
+            self.tlfFace.rotateCounterClockwise()
+            self.trfFace.rotateCounterClockwise()
+            self.brfFace.rotateCounterClockwise()
+            self.blfFace.rotateCounterClockwise()
 
             temp = self.tcfFace
-            self.tcfFace = self.crfFace.rotateCounterClockwise()
-            self.crfFace = self.bcfFace.rotateCounterClockwise()
-            self.bcfFace = self.clfFace.rotateCounterClockwise()
-            self.clfFace = temp.rotateCounterClockwise()
+            self.tcfFace = self.crfFace
+            self.crfFace = self.bcfFace
+            self.bcfFace = self.clfFace
+            self.clfFace = temp
+
+            self.tcfFace.rotateCounterClockwise()
+            self.crfFace.rotateCounterClockwise()
+            self.bcfFace.rotateCounterClockwise()
+            self.clfFace.rotateCounterClockwise()
         self.updatePiecesPosition()
 
     def rotateB(self, clockwise):
         if clockwise: #cube notation for B, L, and D are opposite of F, R, U faces
             temp = self.tlbFace
-            self.tlbFace = self.trbFace.rotateCounterClockwise()
-            self.trbFace = self.brbFace.rotateCounterClockwise()
-            self.brbFace = self.blbFace.rotateCounterClockwise()
-            self.blbFace = temp.rotateCounterClockwise()
+            self.tlbFace = self.trbFace
+            self.trbFace = self.brbFace
+            self.brbFace = self.blbFace
+            self.blbFace = temp
+
+            self.tlbFace.rotateCounterClockwise()
+            self.trbFace.rotateCounterClockwise()
+            self.brbFace.rotateCounterClockwise()
+            self.blbFace.rotateCounterClockwise()
 
             temp = self.tcbFace
-            self.tcbFace = self.crbFace.rotateCounterClockwise()
-            self.crbFace = self.bcbFace.rotateCounterClockwise()
-            self.bcbFace = self.clbFace.rotateCounterClockwise()
-            self.clbFace = temp.rotateCounterClockwise()
+            self.tcbFace = self.crbFace
+            self.crbFace = self.bcbFace
+            self.bcbFace = self.clbFace
+            self.clbFace = temp
+
+            self.tcbFace.rotateCounterClockwise()
+            self.crbFace.rotateCounterClockwise()
+            self.bcbFace.rotateCounterClockwise()
+            self.clbFace.rotateCounterClockwise()
+
         else:
             temp = self.tlbFace
-            self.tlbFace = self.blbFace.rotateClockwise()
-            self.blbFace = self.brbFace.rotateClockwise()
-            self.brbFace = self.trbFace.rotateClockwise()
-            self.trbFace = temp.rotateClockwise()
+            self.tlbFace = self.blbFace
+            self.blbFace = self.brbFace
+            self.brbFace = self.trbFace
+            self.trbFace = temp
+
+            self.tlbFace.rotateClockwise()
+            self.blbFace.rotateClockwise()
+            self.brbFace.rotateClockwise()
+            self.trbFace.rotateClockwise()
 
             temp = self.tcbFace
-            self.tcbFace = self.clbFace.rotateClockwise()
-            self.clbFace = self.bcbFace.rotateClockwise()
-            self.bcbFace = self.crbFace.rotateClockwise()
-            self.crbFace = temp.rotateClockwise()
+            self.tcbFace = self.clbFace
+            self.clbFace = self.bcbFace
+            self.bcbFace = self.crbFace
+            self.crbFace = temp
+
+            self.tcbFace.rotateClockwise()
+            self.clbFace.rotateClockwise()
+            self.bcbFace.rotateClockwise()
+            self.crbFace.rotateClockwise()
         self.updatePiecesPosition()
 
     def rotateR(self, clockwise):
         if clockwise:
             temp = self.trfFace
-            self.trfFace = self.brfFace.rotateUp()
-            self.brfFace = self.brbFace.rotataUp()
-            self.brbFace = self.trbFace.rotateUp()
-            self.trbFace = temp.rotateUp()
+            self.trfFace = self.brfFace
+            self.brfFace = self.brbFace
+            self.brbFace = self.trbFace
+            self.trbFace = temp
 
-            temp = self.trcFace.rotateUp()
-            self.trcFace = self.crfFace.rotateUp()
-            self.crfFace = self.brcFace.rotateUp()
-            self.brcFace = self.crbFace.rotateUp()
-            self.crbFace = temp.rotateUp()
-        else:
-            temp = self.trfFace
-            self.trfFace = self.trbFace.rotateDown()
-            self.trbFace = self.brbFace.rotateDown()
-            self.brbFace = self.brfFace.rotateDown()
-            self.brfFace = temp.rotateDown()
+            self.trfFace.rotateUp()
+            self.brfFace.rotateUp()
+            self.brbFace.rotateUp()
+            self.trbFace.rotateUp()
 
             temp = self.trcFace
-            self.trcFace = self.crbFace.rotateDown()
-            self.crbFace = self.brcFace.rototeDown()
-            self.brcFace = self.crfFace.rotateDown()
-            self.crfFace = temp.rotateDown()
+            self.trcFace = self.crfFace
+            self.crfFace = self.brcFace
+            self.brcFace = self.crbFace
+            self.crbFace = temp
+
+            self.trcFace.rotateUp()
+            self.crfFace.rotateUp()
+            self.brcFace.rotateUp()
+            self.crbFace.rotateUp()
+
+        else:
+            temp = self.trfFace
+            self.trfFace = self.trbFace
+            self.trbFace = self.brbFace
+            self.brbFace = self.brfFace
+            self.brfFace = temp
+
+            temp = self.trcFace
+            self.trcFace = self.crbFace
+            self.crbFace = self.brcFace
+            self.brcFace = self.crfFace
+            self.crfFace = temp
+
+            self.trfFace.rotateDown()
+            self.trbFace.rotateDown()
+            self.brbFace.rotateDown()
+            self.brfFace.rotateDown()
+
+            self.trcFace.rotateDown()
+            self.crbFace.rotateDown()
+            self.brcFace.rotateDown()
+            self.crfFace.rotateDown()
+
         self.updatePiecesPosition()
 
     def rotateL(self, clockwise):
-         if not clockwise:
+        if not clockwise:
             temp = self.tlfFace
-            self.tlfFace = self.blfFace.rotateUp()
-            self.blfFace = self.blbFace.rotataUp()
-            self.blbFace = self.tlbFace.rotateUp()
-            self.tlbFace = temp.rotateUp()
+            self.tlfFace = self.blfFace
+            self.blfFace = self.blbFace
+            self.blbFace = self.tlbFace
+            self.tlbFace = temp
 
-            temp = self.tlcFace.rotateUp()
-            self.tlcFace = self.clfFace.rotateUp()
-            self.clfFace = self.blcFace.rotateUp()
-            self.blcFace = self.clbFace.rotateUp()
-            self.clbFace = temp.rotateUp()
-        else:
-            temp = self.tlfFace
-            self.tlfFace = self.tlbFace.rotateDown()
-            self.tlbFace = self.blbFace.rotateDown()
-            self.blbFace = self.blfFace.rotateDown()
-            self.blfFace = temp.rotateDown()
+            self.tlfFace.rotateUp()
+            self.blfFace.rotateUp()
+            self.blbFace.rotateUp()
+            self.tlbFace.rotateUp()
 
             temp = self.tlcFace
-            self.tlcFace = self.clbFace.rotateDown()
-            self.clbFace = self.blcFace.rototeDown()
-            self.blcFace = self.clfFace.rotateDown()
-            self.clfFace = temp.rotateDown()
+            self.tlcFace = self.clfFace
+            self.clfFace = self.blcFace
+            self.blcFace = self.clbFace
+            self.clbFace = temp
+
+            self.tlcFace.rotateUp()
+            self.clfFace.rotateUp()
+            self.blcFace.rotateUp()
+            self.clbFace.rotateUp()
+
+        else:
+            temp = self.tlfFace
+            self.tlfFace = self.tlbFace
+            self.tlbFace = self.blbFace
+            self.blbFace = self.blfFace
+            self.blfFace = temp
+
+            self.tlfFace.rotateDown()
+            self.tlbFace.rotateDown()
+            self.blbFace.rotateDown()
+            self.blfFace.rotateDown()
+
+            temp = self.tlcFace
+            self.tlcFace = self.clbFace
+            self.clbFace = self.blcFace
+            self.blcFace = self.clfFace
+            self.clfFace = temp
+
+            self.tlcFace.rotateDown()
+            self.clbFace.rotateDown()
+            self.blcFace.rotateDown()
+            self.clfFace.rotateDown()
         self.updatePiecesPosition()
 
 
     def rotateU(self, clockwise):
         if clockwise:
             temp = self.tlfFace
-            self.tlfFace = self.trfFace.rotateLeft()
-            self.trfFace = self.trbFace.rotateLeft()
-            self.trbFace = self.tlbFace.rotateLeft()
-            self.tlbFace = temp.rotateLeft()
+            self.tlfFace = self.trfFace
+            self.trfFace = self.trbFace
+            self.trbFace = self.tlbFace
+            self.tlbFace = temp
+
+            self.tlfFace.rotateLeft()
+            self.trfFace.rotateLeft()
+            self.trbFace.rotateLeft()
+            self.tlbFace.rotateLeft()
 
             temp = self.tcfFace
-            self.tcfFace = self.trcFace.rotateLeft()
-            self.trcFace = self.tcbFace.rotateLeft()
-            self.tcbFace = self.tlcFace.rotateLeft()
-            self.tlcFace = temp.rotateLeft()
+            self.tcfFace = self.trcFace
+            self.trcFace = self.tcbFace
+            self.tcbFace = self.tlcFace
+            self.tlcFace = temp
+
+            self.tcfFace.rotateLeft()
+            self.trcFace.rotateLeft()
+            self.tcbFace.rotateLeft()
+            self.tlcFace.rotateLeft()
         else:
             temp = self.tlfFace
-            self.tlfFace = self.tlbFace.rotateRight()
-            self.tlbFace = self.trbFace.rotateRight()
-            self.trbFace = self.trfFace.rotateRight()
-            self.trfFace = temp.rotateRight()
+            self.tlfFace = self.tlbFace
+            self.tlbFace = self.trbFace
+            self.trbFace = self.trfFace
+            self.trfFace = temp
+
+            self.tlfFace.rotateRight()
+            self.tlbFace.rotateRight()
+            self.trbFace.rotateRight()
+            self.trfFace.rotateRight()
 
             temp = self.tcfFace
-            self.tcfFace = self.tlcFace.rotateRight()
-            self.tlcFace = self.tcbFace.rotateRight()
-            self.tcbFace = self.tlcFace.rotateRight()
-            self.tlcFace = temp.rotateRight()
+            self.tcfFace = self.tlcFace
+            self.tlcFace = self.tcbFace
+            self.tcbFace = self.tlcFace
+            self.tlcFace = temp
+
+            self.tcfFace.rotateRight()
+            self.tlcFace.rotateRight()
+            self.tcbFace.rotateRight()
+            self.tlcFace.rotateRight()
+
         self.updatePiecesPosition()
 
     def rotateD(self, clockwise):
         if not clockwise:
             temp = self.blfFace
-            self.blfFace = self.brfFace.rotateLeft()
-            self.brfFace = self.brbFace.rotateLeft()
-            self.brbFace = self.blbFace.rotateLeft()
-            self.blbFace = temp.rotateLeft()
+            self.blfFace = self.brfFace
+            self.brfFace = self.brbFace
+            self.brbFace = self.blbFace
+            self.blbFace = temp
+
+            self.blfFace.rotateLeft()
+            self.brfFace.rotateLeft()
+            self.brbFace.rotateLeft()
+            self.blbFace.rotateLeft()
 
             temp = self.bcfFace
-            self.bcfFace = self.brcFace.rotateLeft()
-            self.brcFace = self.bcbFace.rotateLeft()
-            self.bcbFace = self.blcFace.rotateLeft()
-            self.blcFace = temp.rotateLeft()
+            self.bcfFace = self.brcFace
+            self.brcFace = self.bcbFace
+            self.bcbFace = self.blcFace
+            self.blcFace = temp
+
+            self.bcfFace.rotateLeft()
+            self.brcFace.rotateLeft()
+            self.bcbFace.rotateLeft()
+            self.blcFace.rotateLeft()
         else:
             temp = self.blfFace
-            self.blfFace = self.blbFace.rotateRight()
-            self.blbFace = self.brbFace.rotateRight()
-            self.brbFace = self.brfFace.rotateRight()
-            self.brfFace = temp.rotateRight()
+            self.blfFace = self.blbFace
+            self.blbFace = self.brbFace
+            self.brbFace = self.brfFace
+            self.brfFace = temp
 
-            temp = self.bcfFace
-            self.bcfFace = self.blcFace.rotateRight()
-            self.blcFace = self.bcbFace.rotateRight()
-            self.bcbFace = self.blcFace.rotateRight()
-            self.blcFace = temp.rotateRight()
+            self.blfFace.rotateRight()
+            self.blbFace.rotateRight()
+            self.brbFace.rotateRight()
+            self.brfFace.rotateRight()
+
+            self.bcfFace.rotateRight()
+            self.blcFace.rotateRight()
+            self.bcbFace.rotateRight()
+            self.blcFace.rotateRight()
+
         self.updatePiecesPosition()
-
-
-
-
-
-
-
-

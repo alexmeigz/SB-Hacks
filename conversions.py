@@ -1,14 +1,14 @@
 import pandas as pd
 
-from cubeClass import *
-from rubixClass import *
+from cube import *
+from rubix import *
 from rgbClass import *
 from colorDetection import *
 
 def readImages():
     colNames = ["Image", "Red", "Green", "Blue"]
     df = pd.DataFrame(columns = colNames)
-    
+
     for i in range(6):
         for j in range(3):
             for k in range(3):
@@ -31,7 +31,7 @@ def readColors():
             face.append(row)
         lyst.append(face)
     return lyst
-    
+
 def convert(lyst):
     '''lyst is a list of faces (3x3 matrices of colors(str)), where lyst[0] has the blue center,
     lyst[1] has the white center, lyst[2] has the green center, lyst[3] has the

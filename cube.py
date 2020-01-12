@@ -1,5 +1,6 @@
 #ALL ORIENTATIONS ARE WITH RESPECT TO THE FRONT FACING SIDE
 
+
 class Cube:
     frontFace = None
     leftFace = None
@@ -30,7 +31,7 @@ class Cube:
 
         self.targetOrientation = [0,0,0]
         # {top, right, front}
-        colorDict = {"RED": [1,0,0], "GREEN": [0,2,0], "WHITE": [0,0,3], 
+        colorDict = {"RED": [1,0,0], "GREEN": [0,2,0], "WHITE": [0,0,3],
                         "ORANGE": [-1,0,0], "BLUE": [0,-2,0], "YELLOW": [0,0,-3]}
 
         for i in [front, left, back, right, top, bottom]:
@@ -141,4 +142,3 @@ class Cube:
                 "\nRight Face: " + str(self.rightFace) +
                 "\nTop Face: " + str(self.topFace) +
                 "\nBottom Face: " + str(self.bottomFace))
-        
