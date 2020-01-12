@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Rubik's Cube Solver
+        </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <style>
+          .container{
+            margin-top: 50px;
+            text-align: center;
+            font-family: "Optima";
+          }
+          .jumbotron {
+            background: none;
+          }
+          h1 {
+            font-size: 90px;
+            line-height: 135px;
+          }
+          h2 {
+            font-size: 45px;
+            line-height: 90px;
+            margin-bottom: 30px;
+          }
+          button {
+            font-size: 25px !important;
+            border-radius: 10px !important;
+            margin-bottom: 25px;
+          }
+          li {
+            text-align: left;
+            font-size: 20px;
+            line-height: 40px;
+          }
+        </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="jumbotron">
+          <h1> Rubik's Cube Solver </h1>
+          <h2> Try it out! </h2>
+          <button class="btn btn-info" onclick="location.href='{% url 'script' %}'"> Run Program </button>
+          <hr>
+          <ol>
+            {% for element in data %}
+            <li> {{element}} </li>
+            {% endfor %}
+          </ol>
+        </div>
+      </div>
+    </body>
+</html>
