@@ -76,39 +76,49 @@ class Rubix3:
         self.bcbFace = bcb
         self.brbFace = brb
 
-        self.pieces = [
-            self.tlfFace,
-            self.tcfFace,
-            self.trfFace,
-            self.clfFace,
-            self.ccfFace ,
-            self.crfFace ,
-            self.blfFace ,
-            self.bcfFace ,
-            self.brfFace ,
+        self.pieces = [[[0,0,0],[0,0,0],[0,0,0]],[[0,0,0],[0,0,0],[0,0,0]],[[0,0,0],[0,0,0],[0,0,0]]]
 
-            self.tlcFace ,
-            self.tccFace,
-            self.trcFace,
-            self.clcFace,
-            self.cccFace,
-            self.crcFace ,
-            self.blcFace ,
-            self.bccFace,
-            self.brcFace,
+        self.updatePiecesPosition()
+        self.allPieces = []
 
-            self.tlbFace ,
-            self.tcbFace ,
-            self.trbFace,
-            self.clbFace ,
-            self.ccbFace ,
-            self.crbFace ,
-            self.blbFace ,
-            self.bcbFace,
-            self.brbFace
+        for i in range(len(self.pieces)):
+            for j in range(len(i)):
+                for k in range(len(j)):
+                    self.allPieces.append(self.pieces[i][j][k])
 
-        ]
+    def getPiece(t, r, f):
+        return self.pieces[-t + 1][-r + 1][-f + 1]
 
+    def updatePiecesPosition(self):
+        self.pieces[0][2][0] = self.tlfFace
+        self.pieces[0][1][0] = self.tcfFace
+        self.pieces[0][0][0] = self.trfFace
+        self.pieces[1][2][0] = self.clfFace
+        self.pieces[1][1][0] = self.ccfFace
+        self.pieces[1][0][0] = self.crfFace
+        self.pieces[2][2][0] = self.blfFace
+        self.pieces[2][1][0] = self.bcfFace
+        self.pieces[2][0][0] = self.brfFace
+
+        self.pieces[0][2][1] = self.tlcFace
+        self.pieces[0][1][1] = self.tccFace
+        self.pieces[0][0][1] = self.trcFace
+        self.pieces[1][2][1] = self.clcFace
+        self.pieces[1][1][1] = self.cccFace
+        self.pieces[1][0][1] = self.crcFace
+        self.pieces[2][2][1] = self.blcFace
+        self.pieces[2][1][1] = self.bccFace
+        self.pieces[2][0][1] = self.brcFace
+
+        self.pieces[0][2][2] = self.tlbFace
+        self.pieces[0][1][2] = self.tcbFace
+        self.pieces[0][0][2] = self.trbFace
+        self.pieces[1][2][2] = self.clbFace
+        self.pieces[1][1][2] = self.ccbFace
+        self.pieces[1][0][2] = self.crbFace
+        self.pieces[2][2][2] = self.blbFace
+        self.pieces[2][1][2] = self.bcbFace
+        self.pieces[2][0][2] = self.brbFace
 
 
     def isCorrectOrientation(self, cubie):
@@ -155,6 +165,7 @@ class Rubix3:
             self.crfFace = self.bcfFace.rotateCounterClockwise()
             self.bcfFace = self.clfFace.rotateCounterClockwise()
             self.clfFace = temp.rotateCounterClockwise()
+        self.updatePiecesPosition()
 
     def rotateB(self, clockwise):
         if clockwise: #cube notation for B, L, and D are opposite of F, R, U faces
@@ -181,6 +192,7 @@ class Rubix3:
             self.clbFace = self.bcbFace.rotateClockwise()
             self.bcbFace = self.crbFace.rotateClockwise()
             self.crbFace = temp.rotateClockwise()
+        self.updatePiecesPosition()
 
     def rotateR(self, clockwise):
         if clockwise:
@@ -207,6 +219,7 @@ class Rubix3:
             self.crbFace = self.brcFace.rototeDown()
             self.brcFace = self.crfFace.rotateDown()
             self.crfFace = temp.rotateDown()
+        self.updatePiecesPosition()
 
     def rotateL(self, clockwise):
          if not clockwise:
@@ -233,6 +246,7 @@ class Rubix3:
             self.clbFace = self.blcFace.rototeDown()
             self.blcFace = self.clfFace.rotateDown()
             self.clfFace = temp.rotateDown()
+        self.updatePiecesPosition()
 
 
     def rotateU(self, clockwise):
@@ -260,6 +274,7 @@ class Rubix3:
             self.tlcFace = self.tcbFace.rotateRight()
             self.tcbFace = self.tlcFace.rotateRight()
             self.tlcFace = temp.rotateRight()
+        self.updatePiecesPosition()
 
     def rotateD(self, clockwise):
         if not clockwise:
@@ -286,6 +301,7 @@ class Rubix3:
             self.blcFace = self.bcbFace.rotateRight()
             self.bcbFace = self.blcFace.rotateRight()
             self.blcFace = temp.rotateRight()
+        self.updatePiecesPosition()
 
 
 
