@@ -59,6 +59,8 @@ def getSwapCornerMoves(buffer, target):
 def getSwapEdgeMoves(buffer, target):
   pass
 
+  
+
 def cornersLeft(cube):
   for i in range(len(cube.allPieces)):
     if cube.allPieces[i].type == "CORNER" and not cube.allPieces[i].targetOrientation == cube.allPieces[i].currentOrientation:
@@ -79,7 +81,6 @@ def solveCorner(cube):
     # cubieCurrent = cubie.currentOrientation
     # diff = [cubieTarget[0] - cubieCurrent[0], cubieTarget[1] - cubieCurrent[1], cubieTarget[2] - cubieCurrent[2]]
     
-
     return getSwapCornerMoves(cubie, cornersLeft(cube))
 
   return None
@@ -89,7 +90,6 @@ def solveEdge(cube):
   while (edgesLeft(cube) is not None):
     cubie = cube.getPiece(1, 1, 0)
    
-
     return getSwapEdgeMoves(cubie, edgesLeft(cube))
 
   return None
