@@ -1,25 +1,17 @@
 import cv2
-# Windows dependencies
-# - Python 2.7.6: http://www.python.org/download/
-# - OpenCV: http://opencv.org/
-# - Numpy -- get numpy from here because the official builds don't support x64:
-#   http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy
+# DEPENDENCIES: PYTHON3, NUMPY, OPENCV
 
-# Mac Dependencies
-# - brew install python
-# - pip install numpy
-# - brew tap homebrew/science
-# - brew install opencv
+dic = {0:"BLUE", 1:"WHITE", 2:"GREEN", 3:"YELLOW", 4:"RED", 5:"ORANGE"}
 
 def takePic():
-
+    '''takes 6 photos of rubix cube sides'''
     for i in range(1, 7):
         while (True):
             cap = cv2.VideoCapture(0)
             ret,frame = cap.read()
             rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
 
-            cv2.imshow('Side ' + str(i), rgb)
+            cv2.imshow('Please Take Photo of the Side with the {} Center'.format(dic.get(i-1)), rgb)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 cv2.imwrite('capture'+str(i)+'.jpg', frame)
                 break
