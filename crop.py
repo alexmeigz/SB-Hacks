@@ -1,12 +1,8 @@
 # Improting Image class from PIL module 
 from PIL import Image 
 import cv2
-
-
-
   
 #webcamImgs = ["capture1.jpg", "capture2.jpg", "capture3.jpg", "capture4.jpg", "capture5.jpg", "capture6.jpg"]
-
 
 def cropToSize(images):
 
@@ -47,5 +43,4 @@ def cutToTiles(images, n):
         #ToDo: look at the colors and store color info in rubix cube objects
 
         #tiles[i][j].save(imgName[:-4] + "-" + str(i) + "," + str(j) + ".jpg")
-  
-
+        tiles[i][j].save("CroppedPhotos/" + imgName[:-4] + "-" + str(i) + "," + str(j) + ".jpg")
